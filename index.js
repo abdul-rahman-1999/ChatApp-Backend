@@ -24,10 +24,7 @@ mongoose.connect(
 // middleware
 app.use(express.json());
 app.use(cookieParser())
-app.use(cors({
-  credentials: true,
-  origin: process.env.CLIENT_URL
-}))
+app.use(cors())
 app.use("/api", userRoute);
 
 app.post('/api/logout', async (req,res) => {
