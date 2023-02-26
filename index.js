@@ -27,10 +27,8 @@ app.use(cookieParser())
 
     // Cors
     const corsOptions = {
-      origin: '*',
       credentials: true,
-      optionSuccessStatus: 200,
-      origin: process.env.CLIENT_URL
+      origin: "https://spectacular-syrniki-b51c37.netlify.app/"
     }
     app.use(cors(corsOptions))
 app.use("/api", userRoute);
