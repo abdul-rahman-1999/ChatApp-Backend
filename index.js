@@ -26,11 +26,11 @@ app.use(express.json());
 app.use(cookieParser())
 
     // Cors
-    const corsOptions = {
-      credentials: true,
-      origin: "https://spectacular-syrniki-b51c37.netlify.app/"
-    }
-    app.use(cors(corsOptions))
+    // const corsOptions = {
+    //   credentials: true,
+    //   origin: "https://spectacular-syrniki-b51c37.netlify.app/"
+    // }
+    app.use(cors())
 app.use("/api", userRoute);
 
 app.post('/api/logout', async (req,res) => {
