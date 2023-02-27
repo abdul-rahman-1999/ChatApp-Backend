@@ -23,23 +23,18 @@ mongoose.connect(
 
 // middleware
 app.use(express.json());
-app.use(cors({
-  origin : "*",
-}))
 app.use(cookieParser())
-
-    // Cors
-    // const corsOptions = {
-    //   credentials: true,
-    //   origin: "https://spectacular-syrniki-b51c37.netlify.app/"
-    // }
+app.use(cors({
+  credentials : true,
+  origin : true,
+}))
 app.use("/api", userRoute);
 
 app.post('/api/logout', async (req,res) => {
  await res.cookie('token', '', {sameSite:'none', secure:true}).json('ok');
 });
 
-const server = app.listen(process.env.PORT);
+const server = app.listen(4015);
 
 const wss = new ws.WebSocketServer({server})
 
