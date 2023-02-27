@@ -75,6 +75,7 @@ wss.on('connection', (connection,req) => {
     const { recipent, text } = messageData
     if(recipent && text){
       const messageDoc = await Message.create({
+        Chatusers : [connection.userId, recipent  ],
         sender:connection.userId,
         recipent,
         text,
@@ -95,9 +96,16 @@ try{
   const userData = await getUserDataFromRequest(req);
   const ourUserId = userData.userId;
   const messages = await Message.find({
-    sender:{$in:[userId,ourUserId]},
-    recipient:{$in:[userId,ourUserId]},
+    Chatusers : {$all : [ourUserId,userId]}
   }).sort({createdAt: 1});
+//   const allMessage = messages.map((msg) => {
+//     return {
+//         myself : msg.sender.toString() === ourUserId,
+//         text : msg.text,
+//         time : msg.createdAt,
+//         sender : ourUserId
+//     }
+// })
   res.json(messages);
 }catch(err){
 console.log(err)
