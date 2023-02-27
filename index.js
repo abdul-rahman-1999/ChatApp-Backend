@@ -23,6 +23,9 @@ mongoose.connect(
 
 // middleware
 app.use(express.json());
+app.use(cors({
+  origin : "*",
+}))
 app.use(cookieParser())
 
     // Cors
@@ -30,7 +33,6 @@ app.use(cookieParser())
     //   credentials: true,
     //   origin: "https://spectacular-syrniki-b51c37.netlify.app/"
     // }
-    app.use(cors())
 app.use("/api", userRoute);
 
 app.post('/api/logout', async (req,res) => {
